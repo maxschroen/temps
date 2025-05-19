@@ -1,0 +1,13 @@
+duckdb @ file:///Users/runner/miniforge3/conda-bld/python-duckdb-split_1744972332256/work/tools/pythonpkg
+et_xmlfile @ file:///home/conda/feedstock_root/build_artifacts/et_xmlfile_1733749653422/work
+InquirerPy @ file:///home/conda/feedstock_root/build_artifacts/inquirerpy_1735755038573/work
+numpy @ file:///Users/runner/miniforge3/conda-bld/numpy_1745118919570/work/dist/numpy-2.2.5-cp313-cp313-macosx_10_13_x86_64.whl#sha256=b28e558a20413dc1ad57a128f9b5fd23e7df193e0616bb68c51f422ea6ab9a72
+openpyxl @ file:///Users/runner/miniforge3/conda-bld/openpyxl_1725460839217/work
+pandas @ file:///Users/runner/miniforge3/conda-bld/pandas_1744430507700/work
+pfzy @ file:///home/conda/feedstock_root/build_artifacts/pfzy_1735754996894/work
+prompt_toolkit @ file:///home/conda/feedstock_root/build_artifacts/prompt-toolkit_1744724089886/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1733215673016/work
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1742920838005/work
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1733380938961/work
+tzdata @ file:///home/conda/feedstock_root/build_artifacts/python-tzdata_1742745135198/work
+wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1733231326287/work

@@ -172,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# User files
+out/
+res/user_config.json
+res/temps.duckdb
+.DS_Store
