@@ -1,4 +1,3 @@
-#!/usr/local/Caskroom/miniforge/base/envs/temps/bin/python
 # STANDARD LIBRARY IMPORTS
 import sys
 import os
