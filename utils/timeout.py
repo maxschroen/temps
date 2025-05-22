@@ -4,6 +4,7 @@ import signal
 # UTIL IMPORTS
 from utils.colors import bcolors
 
+
 # Define the timeout handler
 def timeout_handler(signum: int, frame: any) -> None:
     """
@@ -12,14 +13,17 @@ def timeout_handler(signum: int, frame: any) -> None:
     Args:
         signum (int): Signal number.
         frame (frame): Current stack frame.
-    
+
     Returns:
         None
     """
     raise TimeoutError("Function call timed out")
 
+
 # Function to apply the timeout
-def run_with_timeout(func: callable, *args: any, timeout_duration: int = 30, **kwargs: any) -> any:
+def run_with_timeout(
+    func: callable, *args: any, timeout_duration: int = 30, **kwargs: any
+) -> any:
     """
     Call a function with a timeout.
 
