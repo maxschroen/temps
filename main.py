@@ -632,7 +632,7 @@ def add_entry() -> None:
             clock_out = None
             actual_total_minutes = None
             balance = None
-            expected_total_minutes = 0
+            expected_total_minutes = None
             # Overtime compensation specifics
             if event_type == "Overtime Compensation":
                 expected_total_minutes = _config["expected_daily_total_minutes"]
@@ -702,21 +702,22 @@ def add_entry() -> None:
                     CURRENT_TIMESTAMP
                 )
             """
+            values = [
+                str(uuid.uuid4()),
+                date,
+                day_of_week,
+                event_type,
+                clock_in,
+                clock_out,
+                int(_config["daily_break_minutes"]) if event_type in ["Work"] else None,
+                int(expected_total_minutes) if expected_total_minutes else None,
+                int(_config["expected_daily_total_minutes"]),
+                int(actual_total_minutes) if actual_total_minutes else None,
+                int(balance) if balance else None
+            ]
             connection.execute(
                 query,
-                [
-                    str(uuid.uuid4()),
-                    date,
-                    day_of_week,
-                    event_type,
-                    clock_in,
-                    clock_out,
-                    int(_config["daily_break_minutes"]),
-                    int(expected_total_minutes),
-                    int(_config["expected_daily_total_minutes"]),
-                    int(actual_total_minutes),
-                    int(balance),
-                ],
+                values
             )
             # Close the connection
             connection.close()
@@ -824,7 +825,7 @@ def edit_entry() -> None:
                 clock_out = None
                 actual_total_minutes = None
                 balance = None
-                expected_total_minutes = 0
+                expected_total_minutes = None
                 # Overtime compensation specifics
                 if event_type == "Overtime Compensation":
                     balance = -entry["expected_total_minutes_work_default"]
@@ -891,17 +892,18 @@ def edit_entry() -> None:
                         updated_at = CURRENT_TIMESTAMP
                     WHERE date = ?;
                 """
+                values = [
+                    event_type,
+                    clock_in,
+                    clock_out,
+                    int(expected_total_minutes) if expected_total_minutes else None,
+                    int(actual_total_minutes) if actual_total_minutes else None,
+                    int(balance) if balance else None,
+                    date
+                ]
                 connection.execute(
                     query,
-                    [
-                        event_type,
-                        clock_in,
-                        clock_out,
-                        int(expected_total_minutes),
-                        int(actual_total_minutes),
-                        int(balance),
-                        date,
-                    ],
+                    values
                 )
                 # Close the connection
                 connection.close()
