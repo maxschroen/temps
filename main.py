@@ -230,7 +230,7 @@ def show_entry(entry: dict) -> None:
             )
         if entry["event_type"] in ["Work", "Overtime Compensation"]:
             print(
-                f"{bcolors.ORANGE}‣ Balance:         {bcolors.ENDC}{bcolors.OKGREEN + '+' if entry['day_balance_minutes'] > 0 else bcolors.FAIL if entry['day_balance_minutes'] < 0 else None}{entry['day_balance_minutes']}min{bcolors.ENDC}"
+                f"{bcolors.ORANGE}‣ Balance:         {bcolors.ENDC}{bcolors.OKGREEN + '+' if entry['day_balance_minutes'] > 0 else bcolors.FAIL if entry['day_balance_minutes'] < 0 else ""}{entry['day_balance_minutes']}min{bcolors.ENDC}"
             )
         print()
     except Exception as e:
@@ -631,7 +631,6 @@ def add_entry() -> None:
             clock_in = None
             clock_out = None
             actual_total_minutes = None
-            balance = None
             expected_total_minutes = None
             # Overtime compensation specifics
             if event_type == "Overtime Compensation":
@@ -713,7 +712,7 @@ def add_entry() -> None:
                 int(expected_total_minutes) if expected_total_minutes else None,
                 int(_config["expected_daily_total_minutes"]),
                 int(actual_total_minutes) if actual_total_minutes else None,
-                int(balance) if balance else None
+                int(balance) if balance is not None else None
             ]
             connection.execute(
                 query,
