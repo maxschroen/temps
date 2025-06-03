@@ -712,12 +712,9 @@ def add_entry() -> None:
                 int(expected_total_minutes) if expected_total_minutes else None,
                 int(_config["expected_daily_total_minutes"]),
                 int(actual_total_minutes) if actual_total_minutes else None,
-                int(balance) if balance is not None else None
+                int(balance) if balance is not None else None,
             ]
-            connection.execute(
-                query,
-                values
-            )
+            connection.execute(query, values)
             # Close the connection
             connection.close()
             terminate_loading_spinner_thread(thread_add_entry, True)
@@ -897,13 +894,10 @@ def edit_entry() -> None:
                     clock_out,
                     int(expected_total_minutes) if expected_total_minutes else None,
                     int(actual_total_minutes) if actual_total_minutes else None,
-                    int(balance) if balance else None,
-                    date
+                    int(balance) if balance is not None else None,
+                    date,
                 ]
-                connection.execute(
-                    query,
-                    values
-                )
+                connection.execute(query, values)
                 # Close the connection
                 connection.close()
                 terminate_loading_spinner_thread(thread_edit_entry, True)
