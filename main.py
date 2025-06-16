@@ -632,6 +632,7 @@ def add_entry() -> None:
             clock_out = None
             actual_total_minutes = None
             expected_total_minutes = None
+            balance = None
             # Overtime compensation specifics
             if event_type == "Overtime Compensation":
                 expected_total_minutes = _config["expected_daily_total_minutes"]
