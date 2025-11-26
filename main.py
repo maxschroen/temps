@@ -398,9 +398,9 @@ def load_validate_config() -> None:
     """
     try:
         thread_init_config = spawn_loading_spinner_thread(
-            f"Loading & validating user configuration",
-            f"Successfully loaded & validated user configuration.\n",
-            f"Failed to load & validate user configuration.",
+            "Loading & validating user configuration",
+            "Successfully loaded & validated user configuration.\n",
+            "Failed to load & validate user configuration.",
         )
         _threads.append(thread_init_config)
         # Load config into global variable to make it accessible across entire script
@@ -440,9 +440,9 @@ def initialize() -> None:
         # FOLDER STRUCTURE --- --- --- --- ---
         # Create the necessary directories if they don't exist
         thread_init_folders = spawn_loading_spinner_thread(
-            f"Creating folder structure",
-            f"Successfully created folder structure.\n",
-            f"Failed to create folder structure.",
+            "Creating folder structure",
+            "Successfully created folder structure.\n",
+            "Failed to create folder structure.",
         )
         _threads.append(thread_init_folders)
         os.makedirs(RES_PATH, exist_ok=True)
@@ -450,9 +450,9 @@ def initialize() -> None:
         terminate_loading_spinner_thread(thread_init_folders, True)
         # DATABASE --- --- --- --- ---
         thread_init_database = spawn_loading_spinner_thread(
-            f"Validating database",
-            f"Successfully validated database.\n",
-            f"Failed to validate database.",
+            "Validating database",
+            "Successfully validated database.\n",
+            "Failed to validate database.",
         )
         _threads.append(thread_init_database)
         # Create a connection to the DuckDB database
@@ -527,9 +527,9 @@ def get_existing_entries() -> any:
     try:
         # Print loading spinner
         thread_get_existing_entries = spawn_loading_spinner_thread(
-            f"Loading existing entries",
-            f"Successfully loaded existing entries.\n",
-            f"Failed to load existing entries.",
+            "Loading existing entries",
+            "Successfully loaded existing entries.\n",
+            "Failed to load existing entries.",
         )
         _threads.append(thread_get_existing_entries)
         # Create a connection to the DuckDB database
@@ -676,9 +676,9 @@ def add_entry() -> None:
                 balance = actual_total_minutes - expected_total_minutes
             # Write entry to database
             thread_add_entry = spawn_loading_spinner_thread(
-                f"Adding new entry",
-                f"Successfully added new entry.\n",
-                f"Failed to add new entry.",
+                "Adding new entry",
+                "Successfully added new entry.\n",
+                "Failed to add new entry.",
             )
             _threads.append(thread_add_entry)
             # Create a connection to the DuckDB database
@@ -723,7 +723,7 @@ def add_entry() -> None:
             # Prompt for another entry
             should_exit = not prompt(
                 input_type="confirm",
-                message=f"Do you want to add another entry?",
+                message="Do you want to add another entry?",
                 default=False,
                 mandatory=True,
                 wrap_lines=True,
@@ -790,7 +790,7 @@ def edit_entry() -> None:
             # Prompt for confirmation to edit entry
             confirmed_edit = prompt(
                 input_type="confirm",
-                message=f"Are you sure you want to edit this entry?",
+                message="Are you sure you want to edit this entry?",
                 mandatory=True,
                 wrap_lines=True,
             )
@@ -872,9 +872,9 @@ def edit_entry() -> None:
                     balance = actual_total_minutes - entry["expected_total_minutes"]
                 # Update entry in database
                 thread_edit_entry = spawn_loading_spinner_thread(
-                    f"Updating entry",
-                    f"Successfully updated entry.\n",
-                    f"Failed to update entry.",
+                    "Updating entry",
+                    "Successfully updated entry.\n",
+                    "Failed to update entry.",
                 )
                 connection = get_db_connection()
                 query = """
@@ -906,7 +906,7 @@ def edit_entry() -> None:
                 # prompt for another entry
                 should_exit = not prompt(
                     input_type="confirm",
-                    message=f"Do you want to edit another entry?",
+                    message="Do you want to edit another entry?",
                     default=False,
                     mandatory=True,
                     wrap_lines=True,
@@ -977,7 +977,7 @@ def view_entry() -> None:
             # Prompt for confirmation to view another entry
             should_exit = not prompt(
                 input_type="confirm",
-                message=f"Do you want to view another entry?",
+                message="Do you want to view another entry?",
                 default=False,
                 mandatory=True,
                 wrap_lines=True,
@@ -1140,7 +1140,7 @@ def edit_config() -> None:
         # Prompt for confirmation to edit config
         confirmed_edit = prompt(
             input_type="confirm",
-            message=f"Do you want to edit this configuration?",
+            message="Do you want to edit this configuration?",
             mandatory=True,
             wrap_lines=True,
         )
@@ -1179,9 +1179,9 @@ def export_stats() -> None:
         print_title()
         print(f"{bcolors.OKCYAN}{bcolors.UNDERLINE}→ EXPORT STATS{bcolors.ENDC}\n")
         thread_export_stats = spawn_loading_spinner_thread(
-            f"Exporting stats",
-            f"Successfully exported stats.\n",
-            f"Failed to export stats.",
+            "Exporting stats",
+            "Successfully exported stats.\n",
+            "Failed to export stats.",
         )
         _threads.append(thread_export_stats)
         # Get all existing entries
@@ -1297,7 +1297,7 @@ def main_menu_loop() -> None:
                     Separator(),
                     # Choice("DANGER", name="DANGER ZONE"),
                     # Separator(),
-                    Choice(f"EXIT", name="Exit"),
+                    Choice("EXIT", name="Exit"),
                 ],
                 mandatory=True,
                 wrap_lines=True,
@@ -1347,7 +1347,7 @@ if __name__ == "__main__":
         terminate_threads(_threads)
         graceful_exit(success=False)
     # Catch all other exceptions
-    except Exception as e:
+    except Exception:
         terminate_threads(_threads)
         print(
             f"{bcolors.FAIL}\n✗ Check {LOG_PATH} for additional details.{bcolors.ENDC}"
